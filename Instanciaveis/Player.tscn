@@ -1,61 +1,14 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=13 format=2]
 
+[ext_resource path="res://Instanciaveis/Player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Player/Worm/Moving/Moving-0002.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/Player/Worm/Moving/Moving-0001.png" type="Texture" id=3]
-[ext_resource path="res://Sprites/Player/Worm/Eating/Eating-0002.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Player/Worm/Eating/Eating.png" type="Texture" id=4]
 
-[sub_resource type="GDScript" id=1]
-script/source = "extends KinematicBody2D
-
-export var ACELERACAO = 10
-export var VELOCIDADE_MAX = 30
-export var FRICCAO = 4
-
-var velocidade = Vector2.ZERO
-
-onready var animacao = $AnimationPlayer
-#onready var animacao = $AnimationTree.get(\"parameters/playback\") #Pega o endereço das propriedades da AnimationTree (As caixinhas ligadas).
-
-func _ready():
-	pass
-
-# warning-ignore:unused_argument
-func _physics_process(delta): #A cada atualizacao
-	
-	var direcao = Vector2.ZERO #A direcao do \"joystick\" eh zerada.
-	
-	direcao.x = Input.get_action_strength(\"ui_right\") - Input.get_action_strength(\"ui_left\") #A variavel direcao recebe em x a posicao do \"joystick\"
-	direcao.y = Input.get_action_strength(\"ui_down\") - Input.get_action_strength(\"ui_up\") #mesma coisa em y
-	direcao = direcao.normalized() #Para evitar de andar mais rapido nas diagonais
-	
-	if (direcao != Vector2.ZERO) and PlayerStats.is_movable:
-		#A animacao muda para o estado walking.
-		animacao.set_current_animation(\"andando\")
-		
-		if direcao.x > 0:
-			$Sprite.set_flip_h(false)
-		elif direcao.x < 0:
-			$Sprite.set_flip_h(true)
-		
-		#E a velocidade e alterada
-		velocidade = velocidade.move_toward(direcao*VELOCIDADE_MAX, ACELERACAO)
-	elif PlayerStats.is_movable and not (direcao != Vector2.ZERO):
-		#A animacao muda para o estado idle.
-		animacao.set_current_animation(\"Idle\")
-		velocidade = velocidade.move_toward(Vector2.ZERO, FRICCAO)
-		if Input.is_action_just_pressed(\"ui_attack\"):
-			animacao.play(\"comendo\")
-			PlayerStats.points+=1
-			print(PlayerStats.points)
-			
-		
-	velocidade = move_and_slide(velocidade)
-"
-
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 6.12025, 2.89012 )
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
@@ -63,10 +16,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( -0.1, 0 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 2 ), ExtResource( 2 ) ]
+"values": [ ExtResource( 2 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("CollisionShape2D:shape")
@@ -78,10 +31,10 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ SubResource( 2 ) ]
+"values": [ SubResource( 1 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -106,11 +59,11 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ SubResource( 2 ) ]
+"values": [ SubResource( 1 ) ]
 }
 
-[sub_resource type="Animation" id=5]
-step = 0.05
+[sub_resource type="Animation" id=4]
+resource_name = "comendo"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
@@ -123,8 +76,22 @@ tracks/0/keys = {
 "update": 1,
 "values": [ ExtResource( 4 ) ]
 }
+
+[sub_resource type="Animation" id=5]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( -0.1, 0 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ), ExtResource( 2 ) ]
+}
 tracks/1/type = "value"
-tracks/1/path = NodePath("AnimationPlayer:playback_speed")
+tracks/1/path = NodePath("CollisionShape2D:shape")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -132,12 +99,61 @@ tracks/1/enabled = true
 tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 1.0 ]
+"update": 1,
+"values": [ SubResource( 1 ) ]
 }
 
-[node name="Player" type="KinematicBody2D"]
-script = SubResource( 1 )
+[sub_resource type="Animation" id=6]
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 3 ), ExtResource( 2 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionShape2D:shape")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ SubResource( 1 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "comendo"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 4 ) ]
+}
+
+[sub_resource type="CapsuleShape2D" id=8]
+radius = 8.35948
+height = 10.116
+
+[node name="Player" type="KinematicBody2D" groups=[
+"Player",
+]]
+script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
@@ -146,10 +162,22 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Idle = SubResource( 3 )
-anims/andando = SubResource( 4 )
-anims/comendo = SubResource( 5 )
+anims/Idle = SubResource( 2 )
+anims/andando = SubResource( 3 )
+anims/comendo = SubResource( 4 )
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+anims/Idle = SubResource( 5 )
+anims/andando = SubResource( 6 )
+anims/comendo = SubResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0.102095, 1.12303 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -0.220364, 1.21201 )
+rotation = 1.58597
+shape = SubResource( 8 )

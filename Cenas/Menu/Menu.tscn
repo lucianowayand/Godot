@@ -1,0 +1,87 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Cenas/Menu/Scripts/menu_controller.gd" type="Script" id=1]
+[ext_resource path="res://Fonts/new_dynamicfont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Fonts/new_dynamicfont_small.tres" type="DynamicFont" id=3]
+
+[node name="Menu" type="Control"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_top = -0.951309
+margin_right = 240.0
+margin_bottom = 134.049
+color = Color( 0.298039, 0.231373, 0.301961, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+modulate = Color( 0.788235, 0.929412, 0.862745, 1 )
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 59.277
+margin_top = 4.81059
+margin_right = 199.277
+margin_bottom = 28.8106
+custom_fonts/font = ExtResource( 2 )
+text = "Evolutron Remade"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NewGame" type="Button" parent="."]
+margin_left = 4.0
+margin_top = 39.9115
+margin_right = 79.0
+margin_bottom = 64.9115
+rect_pivot_offset = Vector2( 37.5, 12.5 )
+focus_mode = 1
+custom_fonts/font = ExtResource( 3 )
+enabled_focus_mode = 1
+text = "Novo Jogo"
+flat = true
+align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Continue" type="Button" parent="."]
+margin_left = 4.52435
+margin_top = 68.0
+margin_right = 79.5244
+margin_bottom = 93.0
+rect_pivot_offset = Vector2( 37.5, 12.5 )
+focus_mode = 1
+custom_fonts/font = ExtResource( 3 )
+enabled_focus_mode = 1
+text = "Continue"
+flat = true
+align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Options" type="Button" parent="."]
+margin_left = 4.04869
+margin_top = 97.0
+margin_right = 78.8109
+margin_bottom = 121.708
+rect_pivot_offset = Vector2( 37.5, 12.5 )
+focus_mode = 1
+custom_fonts/font = ExtResource( 3 )
+enabled_focus_mode = 1
+text = "Options"
+flat = true
+align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="NewGame" to="." method="_on_NewGame_pressed"]
+[connection signal="pressed" from="Continue" to="." method="_on_Continue_pressed"]
+[connection signal="pressed" from="Options" to="." method="_on_Options_pressed"]
