@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Instanciaveis/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Background/Cena1.png" type="Texture" id=2]
 [ext_resource path="res://Cenas/Scripts/Cena1.gd" type="Script" id=3]
+[ext_resource path="res://Cenas/Menu/Esc.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 3.53932
@@ -11,38 +12,42 @@ height = 16.8119
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 3 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = -1
+[node name="Control" parent="." instance=ExtResource( 4 )]
+visible = false
+scale = Vector2( 1, 1 )
 
-[node name="Sprite" type="Sprite" parent="CanvasLayer"]
-position = Vector2( 120, 68 )
+[node name="Background" type="Sprite" parent="."]
 scale = Vector2( 1, 1.00741 )
 texture = ExtResource( 2 )
+offset = Vector2( 120, 67.5 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="CanvasLayer/Sprite"]
-position = Vector2( -120, -67.5 )
-scale = Vector2( 1, 0.992647 )
+[node name="StaticBody2D" type="StaticBody2D" parent="Background"]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CanvasLayer/Sprite/StaticBody2D"]
-visible = false
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Background/StaticBody2D"]
 polygon = PoolVector2Array( 0, 0, 0, 72, 16, 56, 48, 40, 104, 32, 136, 32, 192, 40, 224, 56, 240, 72, 240, 0 )
 
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="CanvasLayer/Sprite/StaticBody2D"]
-visible = false
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Background/StaticBody2D"]
 polygon = PoolVector2Array( 0, 72, 0, 104, 16, 120, 32, 128, 208, 128, 232, 112, 240, 104, 240, 0, 248, 0, 248, 144, -8, 144, -8, 48, -8, 0, 0, 0 )
 
-[node name="Player" parent="CanvasLayer/Sprite/StaticBody2D" instance=ExtResource( 1 )]
-position = Vector2( 112, 72 )
-scale = Vector2( 1, 0.999997 )
-
-[node name="Area2D" type="Area2D" parent="CanvasLayer/Sprite"]
-position = Vector2( 78.248, -7.59999 )
+[node name="Area2D" type="Area2D" parent="Background"]
+position = Vector2( 197, 60 )
 scale = Vector2( 1, 0.992644 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Sprite/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Area2D"]
 rotation = 1.56923
 shape = SubResource( 1 )
-[connection signal="body_entered" from="CanvasLayer/Sprite/Area2D" to="." method="_on_Area2D_body_entered"]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 120, 67.5 )
+scale = Vector2( 1, 1 )
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+current = true
+limit_left = 0
+limit_top = 0
+limit_right = 240
+limit_bottom = 135
+[connection signal="body_entered" from="Background/Area2D" to="." method="_on_Area2D_body_entered"]
