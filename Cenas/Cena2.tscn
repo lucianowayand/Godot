@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Instanciaveis/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Instanciaveis/Enemies/Spider_sack/Spider_sack.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Background/Cena2.png" type="Texture" id=3]
 
 [sub_resource type="GDScript" id=2]
@@ -10,9 +9,20 @@ script/source = "extends Node2D
 func _ready():
 	$Intro.play(\"Intro\")
 	global_res.is_movable = false
+	instanciar_ovos(4)
+	
 
 func _on_Intro_animation_finished(anim_name):
 	global_res.is_movable = true
+
+func instanciar_ovos(numero):
+	for _i in range(numero):
+		var ovos = load(\"res://Instanciaveis/Enemies/Spider_sack/Spider_sack.tscn\")
+		var ovos_instancias = ovos.instance()
+		ovos_instancias.set_name(\"SpiderSack\"+String(numero))
+		randomize()
+		ovos_instancias.position = Vector2(rand_range(0,240),rand_range(190,270))
+		add_child(ovos_instancias)
 "
 
 [sub_resource type="Animation" id=1]
@@ -54,6 +64,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [ 0.0, 8.0, 0.0, -8.0, 0.0, 8.0, 0.0, -8.0, 0.0, 8.0, 0.0 ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("Player/Camera2D:current")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
 
 [node name="Node2D" type="Node2D"]
 script = SubResource( 2 )
@@ -71,9 +93,11 @@ disabled = true
 
 [node name="Cima" type="CollisionPolygon2D" parent="RigidBody2D"]
 polygon = PoolVector2Array( 0, 136, 0, 192, 72, 168, 152, 168, 200, 176, 240, 192, 240, 136 )
+disabled = true
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 120, 205 )
+position = Vector2( 120, 74.375 )
+rotation = 0.0698132
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
@@ -81,18 +105,6 @@ limit_left = 0
 limit_top = 0
 limit_right = 240
 limit_bottom = 270
-
-[node name="Spider_sack" parent="." instance=ExtResource( 2 )]
-position = Vector2( 48.996, 234.895 )
-
-[node name="Spider_sack2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 69.2871, 191.15 )
-
-[node name="Spider_sack3" parent="." instance=ExtResource( 2 )]
-position = Vector2( 31.6037, 214.604 )
-
-[node name="Spider_sack4" parent="." instance=ExtResource( 2 )]
-position = Vector2( 56.9016, 209.07 )
 
 [node name="Intro" type="AnimationPlayer" parent="."]
 anims/Intro = SubResource( 1 )

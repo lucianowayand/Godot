@@ -1,7 +1,7 @@
 extends Control
 
 func _on_NewGame_pressed():
-	get_tree().change_scene("res://Cenas/Cena1.tscn")
+	get_tree().change_scene("res://Cenas/Menu/Tutorial.tscn")
 
 func _on_Continue_pressed():
 	get_tree().change_scene("res://Cenas/Cena2.tscn")
