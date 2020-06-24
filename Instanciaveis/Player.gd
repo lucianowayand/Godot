@@ -9,9 +9,6 @@ var velocidade = Vector2.ZERO
 onready var animacao = $AnimationPlayer
 #onready var animacao = $AnimationTree.get("parameters/playback") #Pega o endereço das propriedades da AnimationTree (As caixinhas ligadas).
 
-func _ready():
-	pass
-
 # warning-ignore:unused_argument
 func _physics_process(delta): #A cada atualizacao
 	if true: #movement

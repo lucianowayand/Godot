@@ -4,6 +4,7 @@ var points = 0
 var is_movable = true
 var screen = 0
 var is_paused = false
+var camera_pos = Vector2.ZERO
 
 func _physics_process(_delta):
 	if Input.is_action_just_pressed("print"):
@@ -14,6 +15,7 @@ func _physics_process(_delta):
 		print("A screenshot was taken and it is located on "+"res://Screenshots/screenshot"+String(screen)+".png")
 	
 	if Input.is_action_just_pressed("menu") and !is_paused and (get_tree().get_current_scene().get_name() != "Menu"):
+		#camera_pos = 
 		var scene = load("res://Cenas/Menu/Esc.tscn")
 		var scene_instance = scene.instance()
 		scene_instance.set_name("Esc")

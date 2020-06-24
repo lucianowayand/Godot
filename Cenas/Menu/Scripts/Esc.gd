@@ -1,8 +1,9 @@
-extends Control
+extends Node2D
 
 func _ready():
+	#transform = global_res.camera_pos
 	get_tree().paused = true
-	pass
+	
 		
 func _on_Sair_pressed():
 	global_res.is_paused = false

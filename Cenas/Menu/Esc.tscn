@@ -4,38 +4,39 @@
 [ext_resource path="res://Fonts/new_dynamicfont_small.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Fonts/new_dynamicfont.tres" type="DynamicFont" id=3]
 
-[node name="Control" type="Control"]
+[node name="Control" type="Node2D"]
 pause_mode = 2
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -43.5
-margin_top = -44.0
-margin_right = 43.5
-margin_bottom = 44.0
+z_index = 10
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ColorRect3" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -77.0
-margin_top = -24.0
-margin_right = 76.0
-margin_bottom = 24.0
+margin_right = 240.0
+margin_bottom = 135.0
 color = Color( 0, 0, 0, 0.117647 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Control" type="Control" parent="."]
+margin_left = 80.0
+margin_top = 24.0
+margin_right = 120.0
+margin_bottom = 64.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
 margin_top = -1.0
 margin_right = 88.0
 margin_bottom = 88.0
 rect_pivot_offset = Vector2( 93.6433, 43.0072 )
 color = Color( 0.298039, 0.231373, 0.301961, 1 )
 
-[node name="ColorRect2" type="ColorRect" parent="."]
+[node name="ColorRect2" type="ColorRect" parent="Control"]
 margin_left = 4.0
 margin_top = 4.0
 margin_right = 84.0
@@ -43,7 +44,7 @@ margin_bottom = 84.0
 rect_pivot_offset = Vector2( 93.6433, 43.0072 )
 color = Color( 0.4, 0.313726, 0.407843, 1 )
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="Control"]
 margin_left = 22.2259
 margin_top = 2.24298
 margin_right = 68.2259
@@ -51,7 +52,7 @@ margin_bottom = 26.243
 custom_fonts/font = ExtResource( 3 )
 text = "Pause"
 
-[node name="Sair" type="Button" parent="."]
+[node name="Sair" type="Button" parent="Control"]
 margin_left = 11.0
 margin_top = 30.8938
 margin_right = 77.0
@@ -60,7 +61,7 @@ custom_fonts/font = ExtResource( 2 )
 text = "Sair"
 flat = true
 
-[node name="Voltar" type="Button" parent="."]
+[node name="Voltar" type="Button" parent="Control"]
 margin_left = 11.486
 margin_top = 59.6837
 margin_right = 77.486
@@ -71,5 +72,5 @@ flat = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="pressed" from="Sair" to="." method="_on_Sair_pressed"]
-[connection signal="pressed" from="Voltar" to="." method="_on_Voltar_pressed"]
+[connection signal="pressed" from="Control/Sair" to="." method="_on_Sair_pressed"]
+[connection signal="pressed" from="Control/Voltar" to="." method="_on_Voltar_pressed"]
