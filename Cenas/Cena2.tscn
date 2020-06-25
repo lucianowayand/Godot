@@ -1,31 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Instanciaveis/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Cenas/Menu/Esc.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Background/Cena2.png" type="Texture" id=3]
-[ext_resource path="res://Cenas/Menu/Scripts/Esc.gd" type="Script" id=4]
-
-[sub_resource type="GDScript" id=1]
-script/source = "extends Node2D
-
-func _ready():
-	$Intro.play(\"Intro\")
-	global_res.is_movable = false
-	instanciar_ovos(4)
-	
-
-func _on_Intro_animation_finished(anim_name):
-	global_res.is_movable = true
-
-func instanciar_ovos(numero):
-	for _i in range(numero):
-		var ovos = load(\"res://Instanciaveis/Enemies/Spider_sack/Spider_sack.tscn\")
-		var ovos_instancias = ovos.instance()
-		ovos_instancias.set_name(\"SpiderSack\"+String(numero))
-		randomize()
-		ovos_instancias.position = Vector2(rand_range(0,220),rand_range(200,250))
-		add_child(ovos_instancias)
-"
+[ext_resource path="res://Cenas/Scripts/Cena2.gd" type="Script" id=4]
 
 [sub_resource type="Animation" id=2]
 length = 2.0
@@ -72,14 +50,14 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.1 ),
+"times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
 }
 
 [node name="Node2D" type="Node2D"]
-script = SubResource( 1 )
+script = ExtResource( 4 )
 
 [node name="Background" type="Sprite" parent="."]
 texture = ExtResource( 3 )
@@ -93,9 +71,11 @@ polygon = PoolVector2Array( -33.5798, 126.42, -1.57979, 126.42, -1.57979, 254.42
 
 [node name="Cima" type="CollisionPolygon2D" parent="Background/RigidBody2D"]
 polygon = PoolVector2Array( 0, 136, 0, 192, 72, 168, 152, 168, 200, 176, 240, 192, 240, 136 )
+disabled = true
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 120, 205 )
+position = Vector2( 120, 81.25 )
+rotation = 0.139626
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
@@ -104,11 +84,9 @@ limit_top = 0
 limit_right = 240
 limit_bottom = 270
 
-[node name="Control" type="Node2D" parent="." instance=ExtResource( 2 )]
-pause_mode = 2
+[node name="Control" parent="." instance=ExtResource( 2 )]
 visible = false
 position = Vector2( 0.945, 136 )
-script = ExtResource( 4 )
 
 [node name="Intro" type="AnimationPlayer" parent="."]
 anims/Intro = SubResource( 2 )
