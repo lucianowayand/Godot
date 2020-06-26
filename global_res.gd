@@ -9,9 +9,8 @@ var file_handler = File.new()
 var is_on_editor = false
 
 func _ready():
-	if game_dir == "/home/luciano/.steam/debian-installation/steamapps/common/Godot Engine/":
-		is_on_editor = true
-		
+	is_on_editor = is_game_on_editor()
+	
 	if file_handler.file_exists(game_dir+"test.txt"):
 		pass
 
@@ -41,3 +40,7 @@ func printscreen(local:String):
 	image.save_png(local)
 	screen+=1
 	print("A screenshot was taken and it is located on "+local)
+
+func is_game_on_editor():
+	if game_dir == "/home/luciano/.steam/debian-installation/steamapps/common/Godot Engine/":
+		 return true

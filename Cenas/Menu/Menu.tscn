@@ -14,7 +14,7 @@ __meta__ = {
 margin_top = -0.951309
 margin_right = 240.0
 margin_bottom = 134.049
-color = Color( 0.145098, 0.0313726, 0.952941, 1 )
+color = Color( 0.298039, 0.231373, 0.301961, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -37,9 +37,9 @@ __meta__ = {
 
 [node name="NewGame" type="Button" parent="."]
 margin_left = 5.0
-margin_top = 30.0
+margin_top = 28.8106
 margin_right = 80.0
-margin_bottom = 55.0
+margin_bottom = 53.8106
 rect_pivot_offset = Vector2( 37.5, 12.5 )
 focus_mode = 1
 custom_fonts/font = ExtResource( 3 )
@@ -53,9 +53,9 @@ __meta__ = {
 
 [node name="Continue" type="Button" parent="."]
 margin_left = 5.0
-margin_top = 50.0
+margin_top = 49.816
 margin_right = 80.0
-margin_bottom = 75.0
+margin_bottom = 74.816
 rect_pivot_offset = Vector2( 37.5, 12.5 )
 focus_mode = 1
 custom_fonts/font = ExtResource( 3 )
@@ -68,10 +68,10 @@ __meta__ = {
 }
 
 [node name="Options" type="Button" parent="."]
-margin_left = 6.24933
+margin_left = 5.0
 margin_top = 70.1523
-margin_right = 81.0115
-margin_bottom = 95.1523
+margin_right = 80.0
+margin_bottom = 75.0
 rect_pivot_offset = Vector2( 37.5, 12.5 )
 focus_mode = 1
 custom_fonts/font = ExtResource( 3 )

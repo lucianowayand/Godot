@@ -6,7 +6,7 @@
 [ext_resource path="res://Instanciaveis/Enemies/Spider/Walking/Spider_walking1.png" type="Texture" id=4]
 [ext_resource path="res://Instanciaveis/Enemies/Spider/Walking/Spider_walking2.png" type="Texture" id=5]
 
-[sub_resource type="SpriteFrames" id=5]
+[sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 1 ), ExtResource( 2 ) ],
 "loop": true,
@@ -19,33 +19,31 @@ animations = [ {
 "speed": 2.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=1]
+[sub_resource type="CapsuleShape2D" id=2]
 radius = 6.83454
 height = 3.56715
 
-[sub_resource type="CircleShape2D" id=4]
-radius = 19.7677
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 11.1916
+height = 6.74847
 
 [node name="Node2D" type="KinematicBody2D"]
 script = ExtResource( 3 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 5 )
+frames = SubResource( 1 )
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( 3.51717, 6.89906 )
 rotation = 1.57079
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-visible = false
-position = Vector2( 2.57024, 2.43497 )
-shape = SubResource( 4 )
+position = Vector2( 3.51231, 6.93594 )
+rotation = 1.57079
+shape = SubResource( 3 )
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
