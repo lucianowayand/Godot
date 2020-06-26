@@ -23,7 +23,7 @@ func instanciar_ovos(numero):
 		randomize()
 		var vec = Vector2(rand_range(0,240),rand_range(190,270))
 		for i in range(ovos_instanciados.size()):
-			if vec.distance_squared_to(ovos_instanciados[i]) <= 1024:
+			while vec.distance_squared_to(ovos_instanciados[i].global_position) <= 1024:
 				# pegar outro Vector2 aleatorio
 				randomize()
 				vec = Vector2(rand_range(0,240),rand_range(190,270))
