@@ -15,7 +15,7 @@ func _ready():
 	if file_handler.file_exists(game_dir+"test.txt"):
 		pass
 
-func _physics_process(_delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("print"):
 		if is_on_editor:
 			printscreen("/home/luciano/Imagens/Screenshot/screenshot"+String(screen)+".png")
