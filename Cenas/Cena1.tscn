@@ -14,7 +14,6 @@ script = ExtResource( 3 )
 
 [node name="Control" parent="." instance=ExtResource( 4 )]
 visible = false
-scale = Vector2( 1, 1 )
 
 [node name="Background" type="Sprite" parent="."]
 scale = Vector2( 1, 1.00741 )
@@ -42,7 +41,6 @@ shape = SubResource( 1 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 120, 67.5 )
-scale = Vector2( 1, 1 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true

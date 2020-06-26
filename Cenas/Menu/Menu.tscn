@@ -14,7 +14,7 @@ __meta__ = {
 margin_top = -0.951309
 margin_right = 240.0
 margin_bottom = 134.049
-color = Color( 0.298039, 0.231373, 0.301961, 1 )
+color = Color( 0.145098, 0.0313726, 0.952941, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -36,10 +36,10 @@ __meta__ = {
 }
 
 [node name="NewGame" type="Button" parent="."]
-margin_left = 4.0
-margin_top = 39.9115
-margin_right = 79.0
-margin_bottom = 64.9115
+margin_left = 5.0
+margin_top = 30.0
+margin_right = 80.0
+margin_bottom = 55.0
 rect_pivot_offset = Vector2( 37.5, 12.5 )
 focus_mode = 1
 custom_fonts/font = ExtResource( 3 )
@@ -52,10 +52,10 @@ __meta__ = {
 }
 
 [node name="Continue" type="Button" parent="."]
-margin_left = 4.52435
-margin_top = 68.0
-margin_right = 79.5244
-margin_bottom = 93.0
+margin_left = 5.0
+margin_top = 50.0
+margin_right = 80.0
+margin_bottom = 75.0
 rect_pivot_offset = Vector2( 37.5, 12.5 )
 focus_mode = 1
 custom_fonts/font = ExtResource( 3 )
@@ -68,10 +68,10 @@ __meta__ = {
 }
 
 [node name="Options" type="Button" parent="."]
-margin_left = 4.04869
-margin_top = 97.0
-margin_right = 78.8109
-margin_bottom = 121.708
+margin_left = 6.24933
+margin_top = 70.1523
+margin_right = 81.0115
+margin_bottom = 95.1523
 rect_pivot_offset = Vector2( 37.5, 12.5 )
 focus_mode = 1
 custom_fonts/font = ExtResource( 3 )
@@ -82,6 +82,19 @@ align = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Sair" type="Button" parent="."]
+margin_left = 7.06505
+margin_top = 103.919
+margin_right = 43.065
+margin_bottom = 128.919
+custom_fonts/font = ExtResource( 3 )
+text = "Sair"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="NewGame" to="." method="_on_NewGame_pressed"]
 [connection signal="pressed" from="Continue" to="." method="_on_Continue_pressed"]
 [connection signal="pressed" from="Options" to="." method="_on_Options_pressed"]
+[connection signal="pressed" from="Sair" to="." method="_on_Sair_pressed"]
