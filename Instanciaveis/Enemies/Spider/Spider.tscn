@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Instanciaveis/Enemies/Spider/Idle/Spider_idle1.png" type="Texture" id=1]
+[ext_resource path="res://Instanciaveis/Enemies/Spider/Idle/Spider_idle2.png" type="Texture" id=2]
+[ext_resource path="res://Instanciaveis/Enemies/Spider/Spider.gd" type="Script" id=3]
+[ext_resource path="res://Instanciaveis/Enemies/Spider/Walking/Spider_walking1.png" type="Texture" id=4]
+[ext_resource path="res://Instanciaveis/Enemies/Spider/Walking/Spider_walking2.png" type="Texture" id=5]
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 2.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "moving",
+"speed": 2.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 6.83454
+height = 3.56715
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 19.7677
+
+[node name="Node2D" type="KinematicBody2D"]
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 5 )
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 3.51717, 6.89906 )
+rotation = 1.57079
+shape = SubResource( 1 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+position = Vector2( 2.57024, 2.43497 )
+shape = SubResource( 4 )
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

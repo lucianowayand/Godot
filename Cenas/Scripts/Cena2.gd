@@ -4,6 +4,7 @@ func _ready(): #inicia o cinematic da queda, o player obviamente nao pode se mex
 	$Intro.play("Intro")
 	global_res.is_movable = false
 	global_res.instanciar_em_area(Vector2(20,200),Vector2(200,250),4,"res://Instanciaveis/Enemies/Spider_sack/Spider_sack.tscn", "SpiderSack")
+	global_res.instanciar_em_area(Vector2(20,200),Vector2(200,250),1,"res://Instanciaveis/Enemies/Spider/Spider.tscn", "Spider")
 	
 func _on_Intro_animation_finished(_anim_name): #quando acaba o jogo se resume
 	global_res.is_movable = true

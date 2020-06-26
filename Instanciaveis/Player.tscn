@@ -156,7 +156,7 @@ height = 10.116
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 3 )
+texture = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
