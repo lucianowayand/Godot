@@ -4,6 +4,7 @@ onready var pos = 0
 
 onready var player = get_parent().get_node("Player")
 onready var screen_size = get_parent().get_node("Background").get("offset").y
+
 func _on_Sair_pressed():
 	global_res.is_paused = false
 	get_tree().paused = false
