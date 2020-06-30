@@ -21,7 +21,7 @@ tracks/0/keys = {
 "values": [ Vector2( 120, 67.5 ), Vector2( 120, 205 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Background/RigidBody2D/Cima:disabled")
+tracks/1/path = NodePath("Background/Parede/Cima:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -64,14 +64,14 @@ script = ExtResource( 4 )
 texture = ExtResource( 3 )
 offset = Vector2( 120, 135 )
 
-[node name="RigidBody2D" type="StaticBody2D" parent="Background"]
+[node name="Parede" type="StaticBody2D" parent="Background"]
 
-[node name="Laterais" type="CollisionPolygon2D" parent="Background/RigidBody2D"]
+[node name="Laterais" type="CollisionPolygon2D" parent="Background/Parede"]
 position = Vector2( 9.57979, 9.5798 )
 polygon = PoolVector2Array( -33.5798, 126.42, -1.57979, 126.42, -1.57979, 254.42, 222.42, 254.42, 222.42, 126.42, 254.42, 126.42, 254.42, 278.42, -33.5798, 278.42 )
 
-[node name="Cima" type="CollisionPolygon2D" parent="Background/RigidBody2D"]
-polygon = PoolVector2Array( 0, 136, 0, 192, 72, 168, 152, 168, 200, 176, 240, 192, 240, 136 )
+[node name="Cima" type="CollisionPolygon2D" parent="Background/Parede"]
+polygon = PoolVector2Array( 0, 136, 0, 190.5, 29, 178, 69.75, 169.25, 152, 168, 200, 176, 240, 192, 240, 136 )
 disabled = true
 
 [node name="Player" parent="." instance=ExtResource( 1 )]

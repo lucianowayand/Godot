@@ -10,6 +10,7 @@ func _on_Sair_pressed():
 	get_tree().paused = false
 	queue_free()
 	get_tree().change_scene("res://Cenas/Menu/Menu.tscn")
+	global_res.points = 0
 
 func _on_Voltar_pressed():
 	global_res.is_paused = false
