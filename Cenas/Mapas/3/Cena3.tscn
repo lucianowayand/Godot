@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Cenas/map_default.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Cenas/Mapas/3/Cena3.png" type="Texture" id=2]
+[ext_resource path="res://Cenas/Mapas/3/Cena3.gd" type="Script" id=3]
+[ext_resource path="res://Instanciaveis/Enemies/Spider_sack/Sprites/spider_sack.png" type="Texture" id=4]
+
+[node name="Mapa" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+
+[node name="Player" parent="." index="2"]
+position = Vector2( 192, 216 )
+
+[node name="Background" parent="." index="3"]
+texture = ExtResource( 2 )
+offset = Vector2( 190, 150 )
+
+[node name="PontoA" type="Node2D" parent="." index="4"]
+visible = false
+position = Vector2( 48, 280 )
+
+[node name="Sprite" type="Sprite" parent="PontoA" index="0"]
+texture = ExtResource( 4 )
+
+[node name="PontoB" type="Node2D" parent="." index="5"]
+position = Vector2( 320, 176 )
+
+[node name="Sprite" type="Sprite" parent="PontoB" index="0"]
+visible = false
+texture = ExtResource( 4 )
