@@ -1,13 +1,18 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Instanciaveis/Enemies/Spider/Sprites/Spider_walking2.png" type="Texture" id=1]
 [ext_resource path="res://Instanciaveis/Enemies/Spider/Sprites/Spider_walking1.png" type="Texture" id=2]
 [ext_resource path="res://Instanciaveis/Enemies/Enemy.tscn" type="PackedScene" id=3]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 11.959, 5.59428 )
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 5.14553
+height = 13.4424
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 5.25077
+height = 13.4108
+
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ ExtResource( 2 ), ExtResource( 1 ) ],
 "loop": true,
@@ -21,19 +26,17 @@ animations = [ {
 difficulty = 4
 speed = 0.6
 
-[node name="RigidBody2D" type="RigidBody2D" parent="." index="1"]
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="RigidBody2D" index="0"]
-position = Vector2( 4.86136, 7.68979 )
+[node name="CollisionShape2D" parent="RigidBody2D" index="0"]
+position = Vector2( 4.33103, 7.77818 )
+rotation = 1.56541
 shape = SubResource( 1 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="2"]
-frames = SubResource( 2 )
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2( 4.24265, 7.77818 )
+rotation = 1.57743
+shape = SubResource( 2 )
+
+[node name="AnimatedSprite" parent="." index="3"]
+frames = SubResource( 3 )
 playing = true
-
-[node name="Area2D" type="Area2D" parent="." index="3"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2( 4.86136, 7.68979 )
-shape = SubResource( 1 )
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
