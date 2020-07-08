@@ -1,10 +1,9 @@
 extends Node2D
 
-onready var pos = 0
-
 onready var player = get_tree().get_root().get_node("Mapa").find_node("Player")
 onready var background = get_tree().get_root().get_node("Mapa").find_node("Background")
 onready var screen_size = Vector2(background.get("offset").x, background.get("offset").y)
+
 
 func _on_Sair_pressed():
 	global_res.is_paused = false
@@ -16,7 +15,6 @@ func _on_tentar_novamente_pressed():
 	get_tree().reload_current_scene()
 	get_tree().call_group("Enemies","free")
 	get_tree().paused = false
-	global_res.player_level = 0
 
 func _process(_delta):
 	follow_player()

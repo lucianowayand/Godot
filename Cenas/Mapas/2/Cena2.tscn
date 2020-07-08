@@ -88,7 +88,6 @@ disabled = true
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 120, 67.5 )
-z_index = 10
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 limit_left = 0

@@ -26,3 +26,6 @@ func _on_Area2D_body_entered(body):
 	elif body == player and global_res.player_level >= $Stats.difficulty:
 		global_res.player_level += $Stats.reward
 		queue_free()
+
+	elif body.name == "Web":
+		print("I got Webbed!")

@@ -1,6 +1,7 @@
 extends Node
 
 var player_level = 0
+var aux = 0
 var is_movable = true
 var screen = 0
 var is_paused = false
@@ -21,8 +22,9 @@ func _physics_process(_delta):
 		else:
 			printscreen(game_dir+"screenshot"+String(screen)+".png")
 	
-	if player_level == 4:
-		get_tree().call_group("Player","grow")
+	if aux != player_level:
+		aux = player_level
+		get_tree().call_group("Player","update_size")
 
 func instanciar_em_area(ponto_a : Vector2=Vector2.ZERO, ponto_b : Vector2=Vector2.ZERO, numero : int=1, cena : String="", nome : String="Node"):
 	if cena != "":

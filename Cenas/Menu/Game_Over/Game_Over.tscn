@@ -6,7 +6,8 @@
 
 [node name="Control" type="Node2D"]
 pause_mode = 2
-z_index = 20
+z_index = 30
+z_as_relative = false
 script = ExtResource( 3 )
 
 [node name="ColorRect3" type="ColorRect" parent="."]
