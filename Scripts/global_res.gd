@@ -56,5 +56,7 @@ func printscreen(local:String):
 	print("A screenshot was taken and it is located on "+local)
 
 func is_game_on_editor():
-	if game_dir == "/home/luciano/.steam/debian-installation/steamapps/common/Godot Engine/":
+	if game_dir == "/home/luciano/.local/share/Steam/steamapps/common/Godot Engine/":
 		 return true
+	else:
+		print(game_dir)
