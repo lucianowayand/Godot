@@ -6,6 +6,7 @@ export var FRICCAO = 4
 
 var velocidade = Vector2.ZERO
 onready var animacao = $base
+onready var cooldown = false
 
 func _ready():
 	update_size()
@@ -25,8 +26,10 @@ func _physics_process(delta): #A cada atualizacao
 			
 			if direcao.x > 0:
 				animacao.set_flip_h(false)
+				$Position2D.position.x = 16
 			elif direcao.x < 0:
 				animacao.set_flip_h(true)
+				$Position2D.position.x = -16
 			
 			#E a velocidade e alterada
 			velocidade = velocidade.move_toward(direcao*VELOCIDADE_MAX, ACELERACAO)
@@ -38,6 +41,16 @@ func _physics_process(delta): #A cada atualizacao
 			
 		velocidade = move_and_slide(velocidade)
 
+	if true: #attack
+		if Input.is_action_just_pressed("ui_attack") and !cooldown and global_res.player_level >= 5:
+			var _load = load("res://Instanciaveis/Player/bullet.tscn")
+			var _instancia = _load.instance()
+			_instancia.global_position = $Position2D.global_position
+			_instancia.set("z_index",3)
+			get_parent().add_child(_instancia)
+			cooldown = true
+			$Timer.start()
+
 func update_size():
 	if global_res.player_level < 4:
 		pass
@@ -48,3 +61,7 @@ func update_size():
 		animacao.hide()
 		animacao = $nv2
 	animacao.show()
+
+func _on_Timer_timeout():
+	cooldown = false
+	

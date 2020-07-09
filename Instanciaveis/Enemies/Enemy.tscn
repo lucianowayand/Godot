@@ -15,8 +15,8 @@ script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Enemy" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]

@@ -17,15 +17,12 @@ func _process(_delta):
 			scale = (Vector2(1,1))
 			ultima_posicao = position
 
-func _on_Area2D_body_entered(body):
-	if body == player and global_res.player_level < $Stats.difficulty:
+func _on_Enemy_area_entered(area):
+	if area.name == "Player" and global_res.player_level < $Stats.difficulty:
 		game_over.show()
 		get_tree().paused = true
 		global_res.is_paused = true
 
-	elif body == player and global_res.player_level >= $Stats.difficulty:
+	elif area.name == "Player" and global_res.player_level >= $Stats.difficulty:
 		global_res.player_level += $Stats.reward
 		queue_free()
-
-	elif body.name == "Web":
-		print("I got Webbed!")

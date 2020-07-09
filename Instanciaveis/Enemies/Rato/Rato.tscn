@@ -9,7 +9,7 @@
 extents = Vector2( 15.862, 10 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 15.6852, 10 )
+extents = Vector2( 15.3317, 10 )
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
@@ -31,12 +31,12 @@ speed = 0.9
 position = Vector2( 3.97748, 5.92202 )
 shape = SubResource( 1 )
 
-[node name="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2( 3.8007, 5.92202 )
+[node name="CollisionShape2D" parent="Enemy" index="0"]
+position = Vector2( 4.24264, 6.01041 )
 shape = SubResource( 2 )
 
 [node name="AnimatedSprite" parent="." index="3"]
 frames = SubResource( 3 )
-frame = 2
+frame = 1
 playing = true
-[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="area_entered" from="Enemy" to="." method="_on_Enemy_area_entered"]

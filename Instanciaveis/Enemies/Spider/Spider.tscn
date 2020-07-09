@@ -9,8 +9,8 @@ radius = 5.14553
 height = 13.4424
 
 [sub_resource type="CapsuleShape2D" id=2]
-radius = 5.25077
-height = 13.4108
+radius = 5.21969
+height = 13.121
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
@@ -33,13 +33,14 @@ position = Vector2( 4.33103, 7.77818 )
 rotation = 1.56541
 shape = SubResource( 1 )
 
-[node name="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2( 4.24265, 7.77818 )
-rotation = 1.57743
+[node name="Enemy" parent="." index="2"]
+position = Vector2( 4.41942, 7.86657 )
+rotation = 1.55688
+
+[node name="CollisionShape2D" parent="Enemy" index="0"]
 shape = SubResource( 2 )
 
 [node name="AnimatedSprite" parent="." index="3"]
 frames = SubResource( 3 )
-frame = 1
 playing = true
-[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="area_entered" from="Enemy" to="." method="_on_Enemy_area_entered"]

@@ -9,6 +9,7 @@ func _ready(): #inicia o cinematic da queda, o player obviamente nao pode se mex
 
 func _process(delta):
 	if global_res.player_level == 5 and !end:
+		$CanvasLayer/hint.show()
 		global_res.abre_buraco(Vector2(20,200),Vector2(200,250),"res://Cenas/Mapas/3/Cena3.tscn")
 		end = true
 		

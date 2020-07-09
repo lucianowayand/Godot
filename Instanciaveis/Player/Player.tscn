@@ -9,11 +9,10 @@
 [ext_resource path="res://Instanciaveis/Player/Sprites/3/Moving-0002.png" type="Texture" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 6.12025, 2.89012 )
+extents = Vector2( 2.60742, 8.45285 )
 
-[sub_resource type="CapsuleShape2D" id=2]
-radius = 8.35948
-height = 10.116
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 8.43488, 2.6654 )
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
@@ -61,25 +60,24 @@ z_index = 10
 z_as_relative = false
 script = ExtResource( 1 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2( 0.102095, 1.12303 )
+[node name="Player" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2( -0.0717129, 1.84378 )
+rotation = 1.57088
 shape = SubResource( 1 )
 
-[node name="Area2D" type="Area2D" parent="."]
-visible = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-visible = false
-position = Vector2( -0.220364, 1.21201 )
-rotation = 1.58597
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.0137066, 1.83014 )
 shape = SubResource( 2 )
 
 [node name="base" type="AnimatedSprite" parent="."]
-visible = false
 frames = SubResource( 3 )
 animation = "idle"
 playing = true
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="nv1" type="AnimatedSprite" parent="."]
 visible = false
@@ -94,3 +92,16 @@ position = Vector2( 0.0525551, 1.15623 )
 frames = SubResource( 5 )
 animation = "idle"
 playing = true
+
+[node name="Position2D" type="Position2D" parent="."]
+visible = false
+position = Vector2( 16, 4 )
+__meta__ = {
+"_gizmo_extents_": 2.0
+}
+
+[node name="Timer" type="Timer" parent="."]
+process_mode = 0
+one_shot = true
+autostart = true
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
