@@ -6,11 +6,12 @@ func _ready(): #inicia o cinematic da queda, o player obviamente nao pode se mex
 	$Intro.play("Intro")
 	inicia_ovos()
 	inicia_aranha_sem_tocar_player()
-
+	
 func _process(delta):
 	if global_res.player_level == 5 and !end:
-		$CanvasLayer/hint.show()
 		global_res.abre_buraco(Vector2(20,200),Vector2(200,250),"res://Cenas/Mapas/3/Cena3.tscn")
+		$Tip/tips.play("Smooth")
+		$Tip/Timer.start()
 		end = true
 		
 func inicia_aranha_sem_tocar_player(): #Funcao feita pra aranha nao nascer em contato com o jogador
@@ -29,3 +30,6 @@ func inicia_ovos():
 
 func _on_Intro_animation_finished(anim_name):#Ao terminar a animacao o jogador pode se movimentar
 	global_res.is_movable = true
+
+func _on_Timer_timeout():
+	$Tip.queue_free()

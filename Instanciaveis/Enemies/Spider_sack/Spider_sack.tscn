@@ -22,7 +22,7 @@ z_index = 20
 z_as_relative = false
 
 [node name="Stats" parent="." index="0"]
-speed = 0.0
+speed = 1.0
 
 [node name="CollisionShape2D" parent="RigidBody2D" index="0"]
 shape = SubResource( 1 )

@@ -1,10 +1,9 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Instanciaveis/Player/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Cenas/Menu/Esc/Esc.tscn" type="PackedScene" id=2]
+[ext_resource path="res://UI.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Cenas/Mapas/2/Cena2.png" type="Texture" id=3]
 [ext_resource path="res://Cenas/Mapas/2/Cena2.gd" type="Script" id=4]
-[ext_resource path="res://Cenas/Menu/Game_Over/Game_Over.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Fonts/new_dynamicfont_small.tres" type="DynamicFont" id=6]
 
 [sub_resource type="Animation" id=1]
@@ -70,43 +69,24 @@ tracks/4/keys = {
 "values": [ false, true ]
 }
 
+[sub_resource type="Animation" id=2]
+resource_name = "Smooth"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -22 ), Vector2( 0, 0 ) ]
+}
+
 [node name="Mapa" type="Node2D"]
 script = ExtResource( 4 )
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-follow_viewport_enable = true
-
-[node name="hint" type="Control" parent="CanvasLayer"]
-visible = false
-margin_right = 40.0
-margin_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Control" type="ColorRect" parent="CanvasLayer/hint"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_right = 165.0
-margin_bottom = 20.0
-rect_scale = Vector2( 1.2, 1 )
-color = Color( 0.278431, 0.380392, 0.560784, 0.670588 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="CanvasLayer/hint"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = 14.0
-margin_top = 1.0
-margin_right = 182.0
-margin_bottom = 20.0
-custom_fonts/font = ExtResource( 6 )
-text = "Aperte Q para disparar teias"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Background" type="Sprite" parent="."]
 position = Vector2( 0, -0.264866 )
@@ -132,14 +112,43 @@ limit_top = 0
 limit_right = 240
 limit_bottom = 270
 
-[node name="Control" parent="." instance=ExtResource( 2 )]
-visible = false
-position = Vector2( 0.945, 136 )
-
-[node name="Game" parent="." instance=ExtResource( 5 )]
-visible = false
-position = Vector2( 0.945, 136 )
-
 [node name="Intro" type="AnimationPlayer" parent="."]
 anims/Intro = SubResource( 1 )
+
+[node name="Tip" type="CanvasLayer" parent="."]
+offset = Vector2( 0, -22 )
+transform = Transform2D( 1, 0, 0, 1, 0, -22 )
+
+[node name="ColorRect" type="ColorRect" parent="Tip"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -88.0
+margin_right = 88.0
+margin_bottom = 21.0
+color = Color( 0.298039, 0.231373, 0.301961, 0.737255 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Tip"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -84.0
+margin_right = 84.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 6 )
+text = "Aperte Q para disparar teias"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="tips" type="AnimationPlayer" parent="Tip"]
+anims/Smooth = SubResource( 2 )
+
+[node name="Timer" type="Timer" parent="Tip"]
+wait_time = 4.0
+
+[node name="UI" parent="." instance=ExtResource( 2 )]
 [connection signal="animation_finished" from="Intro" to="." method="_on_Intro_animation_finished"]
+[connection signal="animation_finished" from="Tip/tips" to="." method="_on_tips_animation_finished"]
+[connection signal="timeout" from="Tip/Timer" to="." method="_on_Timer_timeout"]

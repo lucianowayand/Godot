@@ -1,8 +1,7 @@
 extends Node2D
 
-onready var game_over = get_parent().get_parent().get_child(1).get_node("Game")
-onready var player = get_parent().get_parent().get_child(1).get_node("Player")
 onready var ultima_posicao = Vector2.ZERO
+onready var player = get_parent().get_parent().get_child(1).get_node("Player")
 
 func _process(_delta):
 	if true: #Follow player
@@ -19,7 +18,7 @@ func _process(_delta):
 
 func _on_Enemy_area_entered(area):
 	if area.name == "Player" and global_res.player_level < $Stats.difficulty:
-		game_over.show()
+		get_parent().get_parent().get_child(1).get_node("UI").get_node("Game").show()
 		get_tree().paused = true
 		global_res.is_paused = true
 

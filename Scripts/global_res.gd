@@ -34,7 +34,6 @@ func instanciar_em_area(ponto_a : Vector2=Vector2.ZERO, ponto_b : Vector2=Vector
 			_instancia.set_name(nome+String(i))
 			randomize()
 			_instancia.position = Vector2(rand_range(ponto_a.x,ponto_a.y),rand_range(ponto_b.x,ponto_b.y))
-			_instancia.set("z_index",3)
 			add_child(_instancia)
 	else:
 		print("Cena deve ser determinada")

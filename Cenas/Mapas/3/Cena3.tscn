@@ -7,20 +7,20 @@
 [node name="Mapa" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
 
-[node name="Player" parent="." index="2"]
+[node name="Player" parent="." index="0"]
 position = Vector2( 192, 216 )
 
-[node name="Background" parent="." index="3"]
+[node name="Background" parent="." index="1"]
 texture = ExtResource( 2 )
 offset = Vector2( 190, 150 )
 
-[node name="PontoA" type="Node2D" parent="." index="4"]
+[node name="PontoA" type="Node2D" parent="." index="2"]
 position = Vector2( 16, 288 )
 
-[node name="PontoB" type="Node2D" parent="." index="5"]
+[node name="PontoB" type="Node2D" parent="." index="3"]
 position = Vector2( 360, 184 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." index="6"]
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="4"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" index="0"]
 polygon = PoolVector2Array( 120, 152, 72, 160, 96, 168, 96, 200, 16, 232, 0, 232, 0, 296, 376, 296, 376, 296, 376, 176, 312, 160, 248, 152, 120, 152, 120, 144, 384, 144, 384, 320, -16, 320, -16, 144, 120, 144 )
