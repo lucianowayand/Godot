@@ -21,6 +21,7 @@ run/main_scene="res://Cenas/Menu/Menu.tscn"
 [autoload]
 
 global_res="*res://Scripts/global_res.gd"
+Song="*res://Sound/Song.tscn"
 
 [display]
 

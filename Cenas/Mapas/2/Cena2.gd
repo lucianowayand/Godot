@@ -1,35 +1,37 @@
-extends Node2D
+extends "res://Cenas/map_default.gd"
 
-var end = false
+onready var tip = false
 
-func _ready(): #inicia o cinematic da queda, o player obviamente nao pode se mexer pra nao dar xibiu e os ovos sao gerados
-	$Intro.play("Intro")
-	inicia_ovos()
+func _ready():
+	end_level = 5
+	next_scene = "res://Cenas/Mapas/3/Cena3.tscn"
+	inicia_ovos(4)
 	inicia_aranha_sem_tocar_player()
+	global_res.is_movable = false
+	$Cinematic.play("Intro")
 	
-func _process(delta):
-	if global_res.player_level == 5 and !end:
-		global_res.abre_buraco(Vector2(20,200),Vector2(200,250),"res://Cenas/Mapas/3/Cena3.tscn")
-		$Tip/tips.play("Smooth")
-		$Tip/Timer.start()
-		end = true
-		
-func inicia_aranha_sem_tocar_player(): #Funcao feita pra aranha nao nascer em contato com o jogador
+func _process(_delta):
+	check_end($Buraco/BL.position,$Buraco/TR.position)
+	shoot_tip()
+
+func inicia_ovos(ovos):
+	global_res.instanciar_em_area($Enemies/Spider_Sack/BL.position,$Enemies/Spider_Sack/TR.position,ovos,"res://Instanciaveis/Enemies/Spider_sack/Spider_sack.tscn","Spider_sack")
+
+func inicia_aranha_sem_tocar_player(): #Funcao feita pra aranha nao nascer em contato com o jogador.
 	var rand = RandomNumberGenerator.new()
 	rand.randomize()
-	var r = rand.randi_range(1,3)#A funcao instanciar em area recebe 3 opcoes, esquerda, lateral e baixo.
+	var r = rand.randi_range(1,2)#A funcao instanciar em area recebe 2 opcoes, esquerda ou direita.
 	if  r == 1: 
-		global_res.instanciar_em_area(Vector2(20,80),Vector2(200,250),1,"res://Instanciaveis/Enemies/Spider/Spider.tscn", "Spider")
+		global_res.instanciar_em_area($Enemies/Spider/BL1.position,$Enemies/Spider/TR1.position,1,"res://Instanciaveis/Enemies/Spider/Spider.tscn", "Spider")
 	elif r == 2:
-		global_res.instanciar_em_area(Vector2(160,220),Vector2(200,250),1,"res://Instanciaveis/Enemies/Spider/Spider.tscn", "Spider")
-	elif r == 3:
-		global_res.instanciar_em_area(Vector2(80,140),Vector2(240,250),1,"res://Instanciaveis/Enemies/Spider/Spider.tscn", "Spider")
+		global_res.instanciar_em_area($Enemies/Spider/BL1.position,$Enemies/Spider/TR1.position,1,"res://Instanciaveis/Enemies/Spider/Spider.tscn", "Spider")
 
-func inicia_ovos():
-	global_res.instanciar_em_area(Vector2(20,200),Vector2(200,250),4,"res://Instanciaveis/Enemies/Spider_sack/Spider_sack.tscn", "SpiderSack")
-
-func _on_Intro_animation_finished(anim_name):#Ao terminar a animacao o jogador pode se movimentar
+func _on_Cinematic_animation_finished(_anim_name):
 	global_res.is_movable = true
-
-func _on_Timer_timeout():
-	$Tip.queue_free()
+	
+func shoot_tip():
+		if end and !tip:
+			$Tip/AnimationPlayer.play("Smooth")
+			yield(get_tree().create_timer(1), "timeout")
+			$Tip/AnimationPlayer.stop()
+			tip = true

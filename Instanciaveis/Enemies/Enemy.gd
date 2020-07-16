@@ -8,6 +8,7 @@ func _process(_delta):
 		if global_res.is_movable == true: #Caso ache o jogador a posicao se aproxima da do jogador com a velocidade determinada.
 			if player != null:
 				position = position.move_toward(player.position,rand_range(0,$Stats.speed)) #Efeito de movimento aleatorio
+
 		#Flipping Sprite
 		if position.x < ultima_posicao.x:
 			scale = (Vector2(-1,1))

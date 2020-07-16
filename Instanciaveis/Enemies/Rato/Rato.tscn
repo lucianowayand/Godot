@@ -24,7 +24,7 @@ z_index = 20
 z_as_relative = false
 
 [node name="Stats" parent="." index="0"]
-difficulty = 6
+difficulty = 8
 speed = 1.1
 
 [node name="CollisionShape2D" parent="RigidBody2D" index="0"]

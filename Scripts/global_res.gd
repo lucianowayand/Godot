@@ -8,10 +8,11 @@ var is_paused = false
 var game_dir = (String(OS.get_executable_path().get_base_dir()))+"/"
 var file_handler = File.new()
 var is_on_editor = false
+var enemies_on_scene = 0
 
 func _ready():
 	is_on_editor = is_game_on_editor()
-	
+
 	if file_handler.file_exists(game_dir+"test.txt"):
 		pass
 
@@ -33,21 +34,20 @@ func instanciar_em_area(ponto_a : Vector2=Vector2.ZERO, ponto_b : Vector2=Vector
 			var _instancia = _load.instance()
 			_instancia.set_name(nome+String(i))
 			randomize()
-			_instancia.position = Vector2(rand_range(ponto_a.x,ponto_a.y),rand_range(ponto_b.x,ponto_b.y))
+			_instancia.position = Vector2(rand_range(ponto_a.x,ponto_b.x),rand_range(ponto_a.y,ponto_b.y))
 			add_child(_instancia)
 	else:
 		print("Cena deve ser determinada")
 
-func abre_buraco(ponto_a : Vector2=Vector2.ZERO, ponto_b : Vector2=Vector2.ZERO, cena : String=""):
+func instanciar_em(posicao : Vector2=Vector2.ZERO, cena : String="", nome : String="Node"):
 	if cena != "":
-		var _load = load("res://Instanciaveis/Hole.tscn")
+		var _load = load(cena)
 		var _instancia = _load.instance()
-		_instancia.set_name("Buraco")
-		randomize()
-		_instancia.position = Vector2(rand_range(ponto_a.x,ponto_a.y),rand_range(ponto_b.x,ponto_b.y))
-		_instancia.set("z_index",3)
-		_instancia.set("scene",cena)
+		_instancia.set_name(nome)
+		_instancia.position = posicao
 		add_child(_instancia)
+	else:
+		print("Cena deve ser determinada")
 
 func printscreen(local:String):
 	var image = get_viewport().get_texture().get_data()
@@ -61,3 +61,11 @@ func is_game_on_editor():
 		 return true
 	else:
 		print(game_dir)
+
+func get_directions():
+	var direcao = Vector2.ZERO
+	direcao.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left") #A variavel direcao recebe em x a posicao do "joystick"
+	direcao.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up") #mesma coisa em y
+	direcao = direcao.normalized() #Para evitar de andar mais rapido nas diagonais
+	return direcao
+

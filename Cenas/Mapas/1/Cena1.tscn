@@ -1,40 +1,19 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Instanciaveis/Player/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Cenas/Mapas/1/Cena1.png" type="Texture" id=2]
+[ext_resource path="res://Cenas/Mapas/1/Cena1.png" type="Texture" id=1]
+[ext_resource path="res://Cenas/map_default.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Instanciaveis/Hole.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Cenas/Menu/Esc/Esc.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Cenas/Mapas/1/Cena1.gd" type="Script" id=4]
 
-[node name="Mapa" type="Node2D"]
+[node name="Mapa" instance=ExtResource( 2 )]
+script = ExtResource( 4 )
 
-[node name="Esc" parent="." instance=ExtResource( 4 )]
-visible = false
+[node name="Player" parent="." index="0"]
+position = Vector2( 104, 64 )
 
-[node name="Background" type="Sprite" parent="."]
-scale = Vector2( 1, 1.00741 )
-texture = ExtResource( 2 )
+[node name="Background" parent="." index="1"]
+texture = ExtResource( 1 )
 offset = Vector2( 120, 67.5 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Background"]
-visible = false
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Background/StaticBody2D"]
-polygon = PoolVector2Array( 0, 0, 0, 72, 16, 56, 48, 40, 104, 32, 136, 32, 192, 40, 224, 56, 240, 72, 240, 0 )
-
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Background/StaticBody2D"]
-polygon = PoolVector2Array( 0, 72, 0, 104, 16, 120, 32, 128, 208, 128, 232, 112, 240, 104, 240, 0, 248, 0, 248, 144, -8, 144, -8, 48, -8, 0, 0, 0 )
-
-[node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 120, 67.5 )
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-visible = false
-current = true
-limit_left = 0
-limit_top = 0
-limit_right = 240
-limit_bottom = 135
-
-[node name="Node2D" parent="." instance=ExtResource( 3 )]
-position = Vector2( 192.945, 70.0156 )
-scene = "res://Cenas/Mapas/2/Cena2.tscn"
+[node name="Buraco" parent="." index="3" instance=ExtResource( 3 )]
+position = Vector2( 196, 72 )
