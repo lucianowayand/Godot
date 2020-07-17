@@ -1,0 +1,168 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Cenas/map_default.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Cenas/Mapas/2/Cena2.png" type="Texture" id=2]
+[ext_resource path="res://Cenas/Mapas/2/Cena2.gd" type="Script" id=3]
+[ext_resource path="res://Fonts/new_dynamicfont_small.tres" type="DynamicFont" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Intro"
+length = 2.0
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 120, 67.5 ), Vector2( 120, 200 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Walls/Top:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Player/Camera2D:current")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Player:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2, 0.6, 1, 1.4, 1.8, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 8.0, -8.0, 8.0, -8.0, 8.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Smooth"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Control:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 20, -20 ), Vector2( 20, 3 ) ]
+}
+
+[node name="Mapa" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+
+[node name="Player" parent="." index="0"]
+position = Vector2( 120, 67.5 )
+
+[node name="Camera2D" parent="Player" index="10"]
+position = Vector2( -8, 0 )
+
+[node name="Background" parent="." index="1"]
+texture = ExtResource( 2 )
+offset = Vector2( 120, 135 )
+
+[node name="Top" type="CollisionPolygon2D" parent="Walls" index="0"]
+polygon = PoolVector2Array( 0, 136, 240, 136, 240, 192, 200, 176, 160, 168, 72, 168, 32, 176, 0, 192 )
+disabled = true
+
+[node name="Walls" type="CollisionPolygon2D" parent="Walls" index="1"]
+polygon = PoolVector2Array( 0, 192, -8, 192, -8, 280, 248, 280, 248, 192, 240, 192, 240, 264, 0, 264 )
+
+[node name="Buraco" type="Node2D" parent="." index="4"]
+visible = false
+
+[node name="BL" type="Position2D" parent="Buraco" index="0"]
+position = Vector2( 24, 248 )
+
+[node name="TR" type="Position2D" parent="Buraco" index="1"]
+position = Vector2( 184, 208 )
+
+[node name="Enemies" type="Node2D" parent="." index="5"]
+visible = false
+
+[node name="Spider_Sack" type="Node2D" parent="Enemies" index="0"]
+
+[node name="BL" type="Position2D" parent="Enemies/Spider_Sack" index="0"]
+position = Vector2( 24, 248 )
+
+[node name="TR" type="Position2D" parent="Enemies/Spider_Sack" index="1"]
+position = Vector2( 216, 192 )
+
+[node name="Spider" type="Node2D" parent="Enemies" index="1"]
+
+[node name="BL1" type="Position2D" parent="Enemies/Spider" index="0"]
+position = Vector2( 24, 248 )
+
+[node name="TR1" type="Position2D" parent="Enemies/Spider" index="1"]
+position = Vector2( 64, 192 )
+
+[node name="BL2" type="Position2D" parent="Enemies/Spider" index="2"]
+position = Vector2( 176, 248 )
+
+[node name="TR2" type="Position2D" parent="Enemies/Spider" index="3"]
+position = Vector2( 216, 192 )
+
+[node name="Cinematic" type="AnimationPlayer" parent="." index="6"]
+anims/Intro = SubResource( 1 )
+
+[node name="Tip" type="CanvasLayer" parent="." index="7"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Tip" index="0"]
+anims/Smooth = SubResource( 2 )
+
+[node name="Control" type="Node2D" parent="Tip" index="1"]
+position = Vector2( 20, -20 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" type="ColorRect" parent="Tip/Control" index="0"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -4.0
+margin_right = 204.0
+margin_bottom = 16.0
+color = Color( 0.298039, 0.231373, 0.301961, 0.694118 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Tip/Control" index="1"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -4.0
+margin_top = -2.0
+margin_right = 204.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 4 )
+text = "Aperte \"Q\" para disparar teias"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="animation_finished" from="Cinematic" to="." method="_on_Cinematic_animation_finished"]

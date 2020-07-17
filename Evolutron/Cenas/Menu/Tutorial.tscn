@@ -1,0 +1,59 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Fonts/new_dynamicfont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Fonts/new_dynamicfont_small.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Cenas/Menu/Tutorial.gd" type="Script" id=3]
+
+[node name="Menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.298039, 0.231373, 0.301961, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -37.8074
+margin_top = 6.14714
+margin_right = 37.1926
+margin_bottom = 30.1471
+custom_fonts/font = ExtResource( 1 )
+text = "Controles"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -111.701
+margin_top = 47.0256
+margin_right = 130.299
+margin_bottom = 110.026
+custom_fonts/font = ExtResource( 2 )
+text = "Setas: Movimentaçao
+Esc: Pause
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+margin_left = 97.0
+margin_top = 104.926
+margin_right = 151.0
+margin_bottom = 129.926
+custom_fonts/font = ExtResource( 2 )
+text = "OK"
+flat = true
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
