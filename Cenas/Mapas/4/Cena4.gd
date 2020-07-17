@@ -17,5 +17,5 @@ func _on_Sprite_animation_finished():
 	$FadeOut/Fade.play("Nova Animação")
 
 func _on_Fade_animation_finished(anim_name):
-	yield(get_tree().create_timer(2), "timeout")
-	get_tree().change_scene("res://Cenas/Menu/Menu.tscn")
+	get_tree().call_group("Enemies","free")
+	get_tree().change_scene("res://Cenas/Mapas/5/Cena5.tscn")

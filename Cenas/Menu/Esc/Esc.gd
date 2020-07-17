@@ -11,7 +11,7 @@ func _on_Sair_pressed():
 	get_tree().paused = false
 	get_tree().call_group("Enemies","free")
 # warning-ignore:return_value_discarded
-	get_tree().change_scene("res://Cenas/Menu/Menu.tscn")
+	get_tree().change_scene("res://Cenas/Menu/Menu/Menu.tscn")
 	global_res.player_level = 0
 
 func _on_Voltar_pressed():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Cenas/Mapas/4/Cena4.png" type="Texture" id=1]
 [ext_resource path="res://Cenas/map_default.tscn" type="PackedScene" id=2]
@@ -14,11 +14,13 @@
 [ext_resource path="res://Cenas/Mapas/4/Moedor_animation3.png" type="Texture" id=12]
 [ext_resource path="res://Cenas/Mapas/4/Moedor_animation2.png" type="Texture" id=13]
 [ext_resource path="res://Cenas/Mapas/4/Moedor_animation9.png" type="Texture" id=14]
+[ext_resource path="res://Cenas/Mapas/4/Sprite-0003.png" type="Texture" id=15]
+[ext_resource path="res://Cenas/Mapas/4/Sprite-0002.png" type="Texture" id=16]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 64, 24 )
 
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="SpriteFrames" id=2]
 animations = [ {
 "frames": [ ExtResource( 3 ), ExtResource( 10 ), ExtResource( 13 ), ExtResource( 12 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 11 ), ExtResource( 9 ), ExtResource( 14 ), ExtResource( 3 ) ],
 "loop": false,
@@ -26,7 +28,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="ParticlesMaterial" id=1]
+[sub_resource type="ParticlesMaterial" id=3]
 emission_shape = 2
 emission_box_extents = Vector3( 20, 20, 1 )
 flag_disable_z = true
@@ -46,7 +48,7 @@ hue_variation_random = 0.03
 
 [sub_resource type="Animation" id=4]
 resource_name = "Nova Animação"
-length = 3.0
+length = 5.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("ColorRect:color")
 tracks/0/interp = 1
@@ -59,6 +61,30 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Sprite2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 2.5, 2.8, 4.1, 4.4, 4.6, 5, 5.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../Sprite2:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 2.5, 4.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 15 ), ExtResource( 16 ) ]
+}
 
 [node name="Mapa" instance=ExtResource( 2 )]
 script = ExtResource( 5 )
@@ -70,7 +96,7 @@ __meta__ = {
 }
 
 [node name="Blade" type="CollisionShape2D" parent="Blade" index="0"]
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="Player" parent="." index="1"]
 script = ExtResource( 4 )
@@ -94,12 +120,12 @@ polygon = PoolVector2Array( 71.9216, 135.965, 49.2687, 159.797, 15.2892, 166.405
 position = Vector2( 122, 205 )
 scale = Vector2( 1.22, 1.24074 )
 z_index = 25
-frames = SubResource( 3 )
+frames = SubResource( 2 )
 
 [node name="Particles2D" type="Particles2D" parent="." index="6"]
 position = Vector2( 56, 232 )
 z_index = 26
-process_material = SubResource( 1 )
+process_material = SubResource( 3 )
 
 [node name="Enemies" type="Node2D" parent="." index="7"]
 
@@ -124,6 +150,12 @@ __meta__ = {
 
 [node name="Fade" type="AnimationPlayer" parent="FadeOut" index="1"]
 "anims/Nova Animação" = SubResource( 4 )
+
+[node name="Sprite2" type="Sprite" parent="." index="9"]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 128, 200 )
+z_index = 28
+texture = ExtResource( 15 )
 [connection signal="body_entered" from="Blade" to="." method="_on_Blade_body_entered"]
 [connection signal="animation_finished" from="Sprite" to="." method="_on_Sprite_animation_finished"]
 [connection signal="animation_finished" from="FadeOut/Fade" to="." method="_on_Fade_animation_finished"]

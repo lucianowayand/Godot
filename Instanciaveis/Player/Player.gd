@@ -55,9 +55,18 @@ func update_size():
 	elif global_res.player_level == 4:
 		animacao.hide()
 		animacao = $nv1
-	elif global_res.player_level >= 5:
+	elif global_res.player_level == 5:
 		animacao.hide()
 		animacao = $nv2
+	elif global_res.player_level == 8:
+		animacao.hide()
+		animacao = $nv3
+	elif global_res.player_level == 9:
+		animacao.hide()
+		animacao = $nv4
+	elif global_res.player_level == 10:
+		animacao.hide()
+		animacao = $nv5
 	animacao.show()
 
 func _on_Timer_timeout():

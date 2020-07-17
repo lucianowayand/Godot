@@ -77,9 +77,9 @@ tracks/0/keys = {
 script = ExtResource( 3 )
 
 [node name="Player" parent="." index="0"]
-position = Vector2( 120, 200 )
+position = Vector2( 120, 67.5 )
 
-[node name="Camera2D" parent="Player" index="7"]
+[node name="Camera2D" parent="Player" index="10"]
 position = Vector2( -8, 0 )
 
 [node name="Background" parent="." index="1"]
@@ -88,6 +88,7 @@ offset = Vector2( 120, 135 )
 
 [node name="Top" type="CollisionPolygon2D" parent="Walls" index="0"]
 polygon = PoolVector2Array( 0, 136, 240, 136, 240, 192, 200, 176, 160, 168, 72, 168, 32, 176, 0, 192 )
+disabled = true
 
 [node name="Walls" type="CollisionPolygon2D" parent="Walls" index="1"]
 polygon = PoolVector2Array( 0, 192, -8, 192, -8, 280, 248, 280, 248, 192, 240, 192, 240, 264, 0, 264 )

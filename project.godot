@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Evolutron"
-run/main_scene="res://Cenas/Menu/Menu.tscn"
+run/main_scene="res://Cenas/Menu/Menu/Menu.tscn"
 
 [autoload]
 
