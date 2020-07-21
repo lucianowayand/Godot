@@ -571,10 +571,10 @@ __meta__ = {
 [node name="Spawn_Area" type="Node2D" parent="."]
 
 [node name="TR" type="Position2D" parent="Spawn_Area"]
-position = Vector2( 360, 48 )
+position = Vector2( 1216, 192 )
 
 [node name="BL" type="Position2D" parent="Spawn_Area"]
-position = Vector2( 24, 192 )
+position = Vector2( 64, 512 )
 
 [node name="Coins" type="Timer" parent="."]
 autostart = true
@@ -582,10 +582,10 @@ autostart = true
 [node name="Moving" type="Node2D" parent="."]
 
 [node name="Left" type="Position2D" parent="Moving"]
-position = Vector2( 32, 48 )
+position = Vector2( 64, 64 )
 
 [node name="Right" type="Position2D" parent="Moving"]
-position = Vector2( 352, 48 )
+position = Vector2( 1216, 64 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 1 )
