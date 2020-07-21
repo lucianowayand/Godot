@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Wallpaper/Basic1.png" type="Texture" id=1]
 [ext_resource path="res://Cenas/Aquarium.gd" type="Script" id=2]
+[ext_resource path="res://Buttons/Sprite-0001.png" type="Texture" id=3]
+[ext_resource path="res://Buttons/Sprite-0002.png" type="Texture" id=4]
 
 [node name="Root" type="Node2D"]
 script = ExtResource( 2 )
@@ -13,10 +15,12 @@ offset = Vector2( 192, 108 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Button" type="Button" parent="CanvasLayer"]
-margin_left = 9.0
-margin_top = 9.0
-margin_right = 32.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 38.0
 margin_bottom = 32.0
+icon = ExtResource( 4 )
+flat = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -52,15 +56,35 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Trash" type="Button" parent="CanvasLayer"]
+margin_left = 272.0
+margin_top = 8.0
+margin_right = 296.0
+margin_bottom = 32.0
+toggle_mode = true
+icon = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Spawn_Area" type="Node2D" parent="."]
 
 [node name="TR" type="Position2D" parent="Spawn_Area"]
-position = Vector2( 360, 56 )
+position = Vector2( 360, 48 )
 
 [node name="BL" type="Position2D" parent="Spawn_Area"]
 position = Vector2( 24, 192 )
 
 [node name="Coins" type="Timer" parent="."]
 autostart = true
+
+[node name="Moving" type="Node2D" parent="."]
+
+[node name="Left" type="Position2D" parent="Moving"]
+position = Vector2( 32, 48 )
+
+[node name="Right" type="Position2D" parent="Moving"]
+position = Vector2( 352, 48 )
 [connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_Button_pressed"]
+[connection signal="toggled" from="CanvasLayer/Trash" to="." method="_on_Trash_toggled"]
 [connection signal="timeout" from="Coins" to="." method="_on_Coins_timeout"]

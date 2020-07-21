@@ -2,6 +2,7 @@ extends Node
 
 var fishes = 0
 var coins = 0
+var trash_can = false
 
 func instanciar_em_area(ponto_a : Vector2=Vector2.ZERO, ponto_b : Vector2=Vector2.ZERO, numero : int=1, cena : String="", nome : String="Node"):
 	if cena != "":
@@ -24,3 +25,7 @@ func instanciar_em(posicao : Vector2=Vector2.ZERO, cena : String="", nome : Stri
 		add_child(_instancia)
 	else:
 		print("Cena deve ser determinada")
+		
+func random(a,b):
+	randomize()
+	return (randi() % b + a)

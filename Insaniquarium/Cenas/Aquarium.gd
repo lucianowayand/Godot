@@ -20,3 +20,6 @@ func _on_Button_pressed():
 
 func _on_Coins_timeout():
 	global.coins += 1
+
+func _on_Trash_toggled(button_pressed):
+	global.trash_can = button_pressed
