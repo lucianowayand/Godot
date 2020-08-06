@@ -1,0 +1,298 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://I-pixel-u.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://menu_font.tres" type="Theme" id=2]
+[ext_resource path="res://UI/Inventory.png" type="Texture" id=3]
+[ext_resource path="res://UI/UI.png" type="Texture" id=4]
+[ext_resource path="res://CanvasLayer.gd" type="Script" id=5]
+
+[sub_resource type="Animation" id=1]
+resource_name = "hp"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("HP:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.682353, 0.109804, 0.109804, 1 ), Color( 1, 1, 1, 1 ), Color( 0.682353, 0.109804, 0.109804, 1 ), Color( 1, 1, 1, 1 ), Color( 0.682353, 0.109804, 0.109804, 1 ) ]
+}
+
+[sub_resource type="DynamicFont" id=2]
+size = 8
+outline_size = 1
+outline_color = Color( 0.494118, 0.164706, 0.164706, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 8
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=4]
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("ST:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.109804, 0.682353, 0.184314, 1 ), Color( 1, 1, 1, 1 ), Color( 0.109804, 0.682353, 0.184314, 1 ), Color( 1, 1, 1, 1 ), Color( 0.109804, 0.682353, 0.184314, 1 ) ]
+}
+
+[sub_resource type="DynamicFont" id=5]
+size = 8
+outline_size = 1
+outline_color = Color( 0.141176, 0.427451, 0.0352941, 1 )
+font_data = ExtResource( 1 )
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource( 5 )
+
+[node name="Inventory" type="Control" parent="."]
+margin_left = 286.0
+margin_top = 60.0
+margin_right = 464.0
+margin_bottom = 222.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="Inventory"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UI" type="TextureRect" parent="."]
+margin_right = 480.0
+margin_bottom = 256.0
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HP" type="Node2D" parent="."]
+
+[node name="Background" type="ColorRect" parent="HP"]
+margin_left = 53.8886
+margin_top = 22.0
+margin_right = 138.889
+margin_bottom = 27.0
+color = Color( 0, 0, 0, 0.403922 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HP_animation" type="AnimationPlayer" parent="HP"]
+anims/hp = SubResource( 1 )
+
+[node name="HP" type="ColorRect" parent="HP"]
+margin_left = 54.0
+margin_top = 22.0
+margin_right = 139.0
+margin_bottom = 27.0
+color = Color( 0.682353, 0.109804, 0.109804, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HP_number" type="Label" parent="HP"]
+margin_left = 86.0
+margin_top = 19.0
+margin_right = 185.0
+margin_bottom = 57.0
+custom_fonts/font = SubResource( 2 )
+text = "12/12"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HP_Label" type="Label" parent="HP"]
+margin_left = 37.0
+margin_top = 19.0
+margin_right = 49.0
+margin_bottom = 29.0
+custom_fonts/font = SubResource( 3 )
+text = "HP"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ST" type="Node2D" parent="."]
+
+[node name="Background" type="ColorRect" parent="ST"]
+margin_left = 53.7773
+margin_top = 36.8112
+margin_right = 138.777
+margin_bottom = 41.8112
+color = Color( 0, 0, 0, 0.403922 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ST_animation" type="AnimationPlayer" parent="ST"]
+anims/st = SubResource( 4 )
+
+[node name="ST" type="ColorRect" parent="ST"]
+margin_left = 54.0
+margin_top = 37.0
+margin_right = 139.0
+margin_bottom = 42.0
+color = Color( 0.109804, 0.682353, 0.184314, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ST_number" type="Label" parent="ST"]
+margin_left = 86.0
+margin_top = 34.0
+margin_right = 126.0
+margin_bottom = 48.0
+custom_fonts/font = SubResource( 5 )
+text = "10/10"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ST_Label" type="Label" parent="ST"]
+margin_left = 37.0
+margin_top = 34.0
+margin_right = 49.0
+margin_bottom = 44.0
+custom_fonts/font = SubResource( 3 )
+text = "ST"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Pause" type="Node2D" parent="."]
+pause_mode = 2
+visible = false
+position = Vector2( 240, 128 )
+
+[node name="Control" type="Control" parent="Pause"]
+margin_left = -66.0
+margin_top = -66.0
+margin_right = 66.0
+margin_bottom = 66.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Draw" type="Node2D" parent="Pause/Control"]
+position = Vector2( -190, -62 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" type="ColorRect" parent="Pause/Control/Draw"]
+margin_left = 192.0
+margin_top = 64.0
+margin_right = 320.0
+margin_bottom = 192.0
+color = Color( 0, 0, 0, 0.403922 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect2" type="ColorRect" parent="Pause/Control/Draw"]
+margin_left = 190.0
+margin_top = 62.0
+margin_right = 192.0
+margin_bottom = 192.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect3" type="ColorRect" parent="Pause/Control/Draw"]
+margin_left = 192.0
+margin_top = 62.0
+margin_right = 322.0
+margin_bottom = 64.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect4" type="ColorRect" parent="Pause/Control/Draw"]
+margin_left = 320.0
+margin_top = 64.0
+margin_right = 322.0
+margin_bottom = 194.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect5" type="ColorRect" parent="Pause/Control/Draw"]
+margin_left = 190.0
+margin_top = 192.0
+margin_right = 322.0
+margin_bottom = 194.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VSplitContainer" type="VBoxContainer" parent="Pause/Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -66.0
+margin_top = -66.0
+margin_right = 66.0
+margin_bottom = 66.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Resume_button" type="Button" parent="Pause/Control/VSplitContainer"]
+margin_top = 8.0
+margin_right = 132.0
+margin_bottom = 34.0
+theme = ExtResource( 2 )
+text = "RESUME"
+flat = true
+
+[node name="Settings" type="Button" parent="Pause/Control/VSplitContainer"]
+margin_top = 38.0
+margin_right = 132.0
+margin_bottom = 64.0
+theme = ExtResource( 2 )
+text = "SETTINGS"
+flat = true
+
+[node name="Menu" type="Button" parent="Pause/Control/VSplitContainer"]
+margin_top = 68.0
+margin_right = 132.0
+margin_bottom = 94.0
+theme = ExtResource( 2 )
+text = "MENU"
+flat = true
+
+[node name="Quit" type="Button" parent="Pause/Control/VSplitContainer"]
+margin_top = 98.0
+margin_right = 132.0
+margin_bottom = 124.0
+theme = ExtResource( 2 )
+text = "QUIT"
+flat = true
+[connection signal="pressed" from="Pause/Control/VSplitContainer/Resume_button" to="." method="_on_Resume_button_pressed"]
+[connection signal="pressed" from="Pause/Control/VSplitContainer/Settings" to="." method="_on_Settings_pressed"]
+[connection signal="pressed" from="Pause/Control/VSplitContainer/Menu" to="." method="_on_Menu_pressed"]
+[connection signal="pressed" from="Pause/Control/VSplitContainer/Quit" to="." method="_on_Quit_pressed"]

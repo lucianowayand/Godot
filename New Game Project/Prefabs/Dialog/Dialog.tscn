@@ -1,0 +1,95 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Fade"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="Dialog" type="Node2D"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Fundo" type="ColorRect" parent="."]
+margin_left = 8.0
+margin_top = 184.0
+margin_right = 472.0
+margin_bottom = 248.0
+color = Color( 0, 0, 0, 0.941176 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Laterais" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect2" type="ColorRect" parent="Laterais"]
+margin_left = 10.0
+margin_top = 186.0
+margin_right = 12.0
+margin_bottom = 246.0
+color = Color( 1, 1, 1, 0.52549 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect4" type="ColorRect" parent="Laterais"]
+margin_left = 468.0
+margin_top = 188.0
+margin_right = 470.0
+margin_bottom = 246.0
+color = Color( 1, 1, 1, 0.52549 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect3" type="ColorRect" parent="Laterais"]
+margin_left = 12.0
+margin_top = 186.0
+margin_right = 470.0
+margin_bottom = 188.0
+color = Color( 1, 1, 1, 0.52549 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect5" type="ColorRect" parent="Laterais"]
+margin_left = 12.0
+margin_top = 244.0
+margin_right = 468.0
+margin_bottom = 246.0
+color = Color( 1, 1, 1, 0.52549 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fade" type="AnimationPlayer" parent="."]
+anims/Fade = SubResource( 1 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Label" type="RichTextLabel" parent="."]
+margin_left = 22.0
+margin_top = 200.0
+margin_right = 462.0
+margin_bottom = 232.0
+text = "Most of the remaining packages could not added to the distribution in their current state, if at all. Therefore, the repository previously hosted here has been removed, with the focus of the project shifting solely on maintaining the Cygwin distribution. It is possible that some of the packages previously shipped here may reappear in the future, but if and when that occurs, it will be into the Cygwin distribution after having been updated and/or rebuilt."
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
