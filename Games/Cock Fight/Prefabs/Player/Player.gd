@@ -5,7 +5,6 @@ const GRAVITY = 20
 var is_touching_ground = false
 export (int) var speed = 100
 export (int) var jump_speed = 450
-var flip = false
 
 onready var aux = Vector2.ZERO
 onready var direction = Vector2.ZERO
@@ -19,25 +18,22 @@ func _on_feet_body_exited(body):
 		is_touching_ground = false
 
 func _input(event):
-	if event.is_action_pressed("ui_right"):
-		flip = false
-	elif event.is_action_pressed("ui_left"):
-		flip = true
-
-func _physics_process(_delta):
-	if aux != position:
-		direction.x = (Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")) * speed
-		$Sprite.flip_h = flip
+	if event.is_action_pressed("ui_right") or event.is_action_pressed("ui_left"):
 		$Sprite.animation = ("running")
-		aux = position
 	else:
-		direction.x = (Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")) * speed
 		$Sprite.animation = ("idle")
+		
+func _physics_process(_delta):
+	direction.x = (Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")) * speed
+	if (Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")) < 0:
+		$Sprite.flip_h = true
+	elif (Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")) > 0:
+		$Sprite.flip_h = false
 	
 	if Input.is_action_pressed("ui_up") and is_touching_ground:
 		direction.y =  -1 * jump_speed
-		
-	direction.y +=  1 * GRAVITY
-		
-# warning-ignore:return_value_discarded
+	
+	if !is_touching_ground:
+		direction.y +=  1 * GRAVITY
+
 	move_and_slide(direction)

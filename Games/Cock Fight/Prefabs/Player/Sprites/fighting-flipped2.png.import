@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/idle4.png-33ab96f20e7e7b70e49b3cec7e56687a.stex"
+path="res://.import/fighting-flipped2.png-7e9d1b455b76842ef3a66251026d1046.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Prefabs/Player/Sprites/idle4.png"
-dest_files=[ "res://.import/idle4.png-33ab96f20e7e7b70e49b3cec7e56687a.stex" ]
+source_file="res://Prefabs/Player/Sprites/fighting-flipped2.png"
+dest_files=[ "res://.import/fighting-flipped2.png-7e9d1b455b76842ef3a66251026d1046.stex" ]
 
 [params]
 

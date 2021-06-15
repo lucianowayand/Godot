@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Prefabs/Player/Sprites/running6.png" type="Texture" id=1]
 [ext_resource path="res://Prefabs/Player/Player.gd" type="Script" id=2]
@@ -9,6 +9,10 @@
 [ext_resource path="res://Prefabs/Player/Sprites/running1.png" type="Texture" id=7]
 [ext_resource path="res://Prefabs/Player/Sprites/running2.png" type="Texture" id=8]
 [ext_resource path="res://Prefabs/Player/Sprites/running4.png" type="Texture" id=9]
+[ext_resource path="res://Prefabs/Player/Sprites/fighting4.png" type="Texture" id=10]
+[ext_resource path="res://Prefabs/Player/Sprites/fighting3.png" type="Texture" id=11]
+[ext_resource path="res://Prefabs/Player/Sprites/fighting2.png" type="Texture" id=12]
+[ext_resource path="res://Prefabs/Player/Sprites/fighting1.png" type="Texture" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 12, 18 )
@@ -19,6 +23,11 @@ animations = [ {
 "loop": true,
 "name": "idle",
 "speed": 7.0
+}, {
+"frames": [ ExtResource( 13 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "Punch",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 6 ), ExtResource( 9 ), ExtResource( 4 ), ExtResource( 1 ) ],
 "loop": true,
@@ -56,5 +65,6 @@ shape = SubResource( 3 )
 [node name="HP_Regen" type="Timer" parent="."]
 
 [node name="CanvasLayer" parent="." instance=ExtResource( 3 )]
+
 [connection signal="body_entered" from="feet" to="." method="_on_feet_body_entered"]
 [connection signal="body_exited" from="feet" to="." method="_on_feet_body_exited"]
