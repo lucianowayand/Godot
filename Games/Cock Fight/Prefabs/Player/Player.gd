@@ -6,7 +6,7 @@ var is_touching_ground = false
 export (int) var speed = 100
 export (int) var jump_speed = 450
 
-onready var aux = Vector2.ZERO
+onready var left_right = Vector2.ZERO
 onready var direction = Vector2.ZERO
 
 func _on_feet_body_entered(body):
@@ -20,9 +20,9 @@ func _on_feet_body_exited(body):
 func _input(event):
 	if event.is_action_pressed("debug"):
 		$Sprite.animation = ("punch")
-	if event.is_action_pressed("ui_right"):
+	elif event.is_action_pressed("ui_right"):
 		$Sprite.flip_h = false
-	if event.is_action_pressed("ui_left"):
+	elif event.is_action_pressed("ui_left"):
 		$Sprite.flip_h = true
 
 func _on_Sprite_animation_finished():
@@ -30,13 +30,17 @@ func _on_Sprite_animation_finished():
 		$Sprite.animation = ("idle")
 
 func _physics_process(_delta):
-	direction.x = (Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")) * speed
+	left_right = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	if $Sprite.animation != "punch":
-		if (Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")) != 0:
+		if left_right != 0:
+			direction.x = left_right * speed
 			$Sprite.animation = ("running")
 		else:
 			$Sprite.animation = ("idle")
-	
+			direction.x = 0
+	else:
+		direction.x = 0
+		
 	if is_touching_ground:
 		if Input.is_action_pressed("ui_up"):
 			direction.y =  -1 * jump_speed
