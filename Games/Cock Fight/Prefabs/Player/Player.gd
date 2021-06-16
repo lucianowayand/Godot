@@ -21,8 +21,10 @@ func _input(event):
 	if event.is_action_pressed("debug"):
 		$Sprite.animation = ("punch")
 	elif event.is_action_pressed("ui_right"):
+		$attack/CollisionShape2D.position.x = 16
 		$Sprite.flip_h = false
 	elif event.is_action_pressed("ui_left"):
+		$attack/CollisionShape2D.position.x = -16
 		$Sprite.flip_h = true
 
 func _on_Sprite_animation_finished():
@@ -49,3 +51,11 @@ func _physics_process(_delta):
 
 	move_and_slide(direction)
 
+func _on_attack_body_entered(body):
+	if body == self:
+		print("self")
+	else:
+		if body.get("tile_set") != null:
+			print("Tile")
+		else:
+			print("not")
