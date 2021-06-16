@@ -20,6 +20,10 @@ func _on_feet_body_exited(body):
 func _input(event):
 	if event.is_action_pressed("debug"):
 		$Sprite.animation = ("punch")
+	if event.is_action_pressed("ui_right"):
+		$Sprite.flip_h = false
+	if event.is_action_pressed("ui_left"):
+		$Sprite.flip_h = true
 
 func _on_Sprite_animation_finished():
 	if $Sprite.animation == "punch":
@@ -28,12 +32,8 @@ func _on_Sprite_animation_finished():
 func _physics_process(_delta):
 	direction.x = (Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")) * speed
 	if $Sprite.animation != "punch":
-		if (Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")) < 0:
+		if (Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")) != 0:
 			$Sprite.animation = ("running")
-			$Sprite.flip_h = true
-		elif (Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")) > 0:
-			$Sprite.animation = ("running")
-			$Sprite.flip_h = false
 		else:
 			$Sprite.animation = ("idle")
 	
