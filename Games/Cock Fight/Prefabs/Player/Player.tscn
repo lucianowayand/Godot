@@ -51,8 +51,7 @@ shape = SubResource( 1 )
 [node name="Sprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -12 )
 frames = SubResource( 2 )
-animation = "punch"
-frame = 2
+animation = "idle"
 playing = true
 __meta__ = {
 "_edit_lock_": true

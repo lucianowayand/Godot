@@ -18,14 +18,8 @@ func _on_feet_body_exited(body):
 		is_touching_ground = false
 
 func _input(event):
-	if event.is_action_pressed("debug"):
+	if event.is_action_pressed("debug") and is_touching_ground:
 		$Sprite.animation = ("punch")
-	elif event.is_action_pressed("ui_right"):
-		$attack/CollisionShape2D.position.x = 16
-		$Sprite.flip_h = false
-	elif event.is_action_pressed("ui_left"):
-		$attack/CollisionShape2D.position.x = -16
-		$Sprite.flip_h = true
 
 func _on_Sprite_animation_finished():
 	if $Sprite.animation == "punch":
@@ -35,6 +29,13 @@ func _physics_process(_delta):
 	left_right = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	if $Sprite.animation != "punch":
 		if left_right != 0:
+			if left_right < 0:
+				$attack/CollisionShape2D.position.x = -16
+				$Sprite.flip_h = true
+			elif left_right > 0:
+				$attack/CollisionShape2D.position.x = 16
+				$Sprite.flip_h = false
+				
 			direction.x = left_right * speed
 			$Sprite.animation = ("running")
 		else:
@@ -44,7 +45,7 @@ func _physics_process(_delta):
 		direction.x = 0
 		
 	if is_touching_ground:
-		if Input.is_action_pressed("ui_up"):
+		if Input.is_action_pressed("ui_up") and $Sprite.animation != "punch":
 			direction.y =  -1 * jump_speed
 	else:
 		direction.y +=  1 * GRAVITY
